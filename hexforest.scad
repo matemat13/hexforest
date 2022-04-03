@@ -1,3 +1,5 @@
+// USER_DEFINABLE PARAMETERS
+
 hex_width = 32.75; // cca 25.4*1.25
 hex_height = 6;
 inner_width = hex_width-1.6;
@@ -13,6 +15,11 @@ trees = 1;
 tree_diameter = 2;
 tree_height = 44;
 treetop_diameter = 25;
+
+text_line1 = "light";
+text_line2 = "woods";
+
+// CALCULATED PARAMETERS
 
 W = hex_width;
 H = hex_height;
@@ -66,6 +73,14 @@ module bottom_part()
     
         translate([0, 0, R])
         sphere(R+0.2);
+        
+        translate([0,W/10,H-inner_height-0.5])
+        linear_extrude(1)
+        text(text_line1, size=W/6, halign="center", valign="bottom");
+        
+        translate([0,-W/10,H-inner_height-0.5])
+        linear_extrude(1)
+        text(text_line2, size=W/6, halign="center", valign="top");
     }
 }
 
