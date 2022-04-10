@@ -11,12 +11,12 @@ base_height = 4;
 
 ball_diameter = 3;
 
-trees = 1;
-tree_diameter = 2;
+trees = 3;
+tree_diameter = 2.5;
 tree_height = 44;
 treetop_diameter = 25;
 
-text_line1 = "light";
+text_line1 = "heavy";
 text_line2 = "woods";
 
 // CALCULATED PARAMETERS
@@ -111,9 +111,13 @@ module top_part()
 //        linear_extrude(2, scale=0.92)
 //        hexagon(WB-0.5);
         
-        for (it=[1:trees])
-            let (dang = 360/trees)
-            translate([(1.1*W/4)*cos(it*dang+dang/3), (1.1*W/4)*sin(it*dang+dang/3), -0.1])
+        if (trees > 1)
+            for (it=[1:trees])
+                let (dang = 360/trees)
+                translate([(1.1*W/4)*cos(it*dang+dang/3), (1.1*W/4)*sin(it*dang+dang/3), -0.1])
+                cylinder(h = H, r = RT);
+        else
+            translate([0, 0, -0.1])
             cylinder(h = H, r = RT);
         
         translate([0, 0, R])
